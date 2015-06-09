@@ -69,5 +69,4 @@
                 int width;
                 int height;
             }
-                    
 
