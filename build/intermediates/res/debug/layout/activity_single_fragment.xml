@@ -1,0 +1,7 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/id_fragmentContainer"
+    android:layout_height="match_parent" >
+
+</FrameLayout><!-- From: file:/C:/Users/Administrator/Desktop/Demo_zhy_18_networkimageloader_03_with_diskcache/network_imageloader_with_diskcache/res/layout/activity_single_fragment.xml -->
