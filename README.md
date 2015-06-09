@@ -88,22 +88,22 @@ b、设置合适的inSampleSize
 我们获得想要显示的大小，为了什么，还不是为了和图片的真正的宽高做比较，拿到一个合适的inSampleSize，去对图片进行压缩么。
 
 那么首先应该是拿到图片的宽和高：
-        / 获得图片的宽和高，并不把图片加载到内存中
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(path, options);
+    / 获得图片的宽和高，并不把图片加载到内存中
+    BitmapFactory.Options options = new BitmapFactory.Options();
+    options.inJustDecodeBounds = true;
+    BitmapFactory.decodeFile(path, options);
 
 这三行就成功获取图片真正的宽和高了，存在我们的options里面；
 
 然后我们就可以happy的去计算inSampleSize了：
-        /**
-             * 根据需求的宽和高以及图片实际的宽和高计算SampleSize
-             *
-             * @param options
-             * @param width
-             * @param height
-             * @return
-             */
+     /**
+       * 根据需求的宽和高以及图片实际的宽和高计算SampleSize
+       *
+       * @param options
+       * @param width
+       * @param height
+       * @return
+       */
             public static int caculateInSampleSize(Options options, int reqWidth,
                     int reqHeight)
             {
