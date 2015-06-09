@@ -9,14 +9,14 @@
    想要压缩，我们第一步应该是获得imageview想要显示的大小，没大小肯定没办法压缩？
 
    那么如何获得imageview想要显示的大小呢？
-        /**
-             * 根据ImageView获适当的压缩的宽和高
-             *
-             * @param imageView
-             * @return
-             */
-            public static ImageSize getImageViewSize(ImageView imageView)
-            {
+                /**
+                     * 根据ImageView获适当的压缩的宽和高
+                     *
+                    * @param imageView
+                    * @return
+                    */
+                 public static ImageSize getImageViewSize(ImageView imageView)
+                    {
 
                 ImageSize imageSize = new ImageSize();
                 DisplayMetrics displayMetrics = imageView.getContext().getResources()
