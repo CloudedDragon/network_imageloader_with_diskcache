@@ -127,7 +127,7 @@ b、设置合适的inSampleSize
 
 options里面存了实际的宽和高；reqWidth和reqHeight就是我们之前得到的想要显示的大小；经过比较，得到一个合适的inSampleSize;
 
-有了inSampleSize:
+        有了inSampleSize:
         options.inSampleSize = ImageSizeUtil.caculateInSampleSize(options,
                         width, height);
         // 使用获得到的InSampleSize再次解析图片
