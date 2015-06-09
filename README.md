@@ -227,6 +227,7 @@ b、使用BitmapFactory.decodeStream(is, null, opts);
 ### 3、具体的实现
 
 1、构造方法
+
         public static ImageLoader getInstance(int threadCount, Type type)
             {
                 if (mInstance == null)
@@ -375,6 +376,7 @@ b、使用BitmapFactory.decodeStream(is, null, opts);
 2、loadImage
 
 构造完成以后，当然是使用了，用户调用loadImage传入(final String path, final ImageView imageView,final boolean isFromNet)就可以完成本地或者网络图片的加载。
+
         /**
              * 根据path为imageview设置图片
              *
@@ -423,6 +425,7 @@ b、使用BitmapFactory.decodeStream(is, null, opts);
 首先我们为imageview.setTag；然后初始化一个mUIHandler，不用猜，这个mUIHandler用户更新我们的imageview，因为这个方法肯定是主线程调用的。
 
 然后调用：getBitmapFromLruCache(path);根据path在缓存中获取bitmap；如果找到那么直接去设置我们的图片；
+
         private void refreashBitmap(final String path, final ImageView imageView,
                     Bitmap bm)
             {
@@ -439,6 +442,7 @@ b、使用BitmapFactory.decodeStream(is, null, opts);
 handleMessage中拿到path,bitmap,imageview；记得必须要：
 
 // 将path与getTag存储路径进行比较
+
         if (imageview.getTag().toString().equals(path))
                 {
                 imageview.setImageBitmap(bm);
@@ -448,6 +452,7 @@ handleMessage中拿到path,bitmap,imageview；记得必须要：
 如果没找到，则通过buildTask去新建一个任务，在addTask到任务队列。
 
 buildTask就比较复杂了，因为还涉及到本地和网络，所以我们先看addTask代码：
+
         private synchronized void addTask(Runnable runnable)
             {
                 mTaskQueue.add(runnable);
@@ -463,6 +468,7 @@ buildTask就比较复杂了，因为还涉及到本地和网络，所以我们�
                 mPoolThreadHandler.sendEmptyMessage(0x110);
             }
 很简单，就是runnable加入TaskQueue，与此同时使用mPoolThreadHandler（这个handler还记得么，用于和我们后台线程交互。）去发送一个消息给后台线程，叫它去取出一个任务执行；具体代码：
+
         mPoolThreadHandler = new Handler()
                         {
                             @Override
@@ -472,6 +478,7 @@ buildTask就比较复杂了，因为还涉及到本地和网络，所以我们�
 // 线程池去取出一个任务进行执行
                         mThreadPool.execute(getTask());
 直接使用mThreadPool线程池，然后使用getTask去取一个任务。
+
         /**
              * 从任务队列取出一个方法
              *
@@ -491,6 +498,7 @@ buildTask就比较复杂了，因为还涉及到本地和网络，所以我们�
 getTask代码也比较简单，就是根据Type从任务队列头或者尾进行取任务。
 
 现在你会不会好奇，任务里面到底什么代码？其实我们也就剩最后一段代码了buildTask
+
         /**
              * 根据传入的参数，新建一个任务
              *
@@ -591,6 +599,7 @@ getTask代码也比较简单，就是根据Type从任务队列头或者尾进行
 如果不是网络图片：直接loadImageFromLocal本地加载图片的方式进行加载
 
 经过上面，就获得了bitmap；然后加入addBitmapToLruCache，refreashBitmap回调显示图片。
+
         /**
              * 将图片加入LruCache
              *
