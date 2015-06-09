@@ -97,6 +97,7 @@ b、设置合适的inSampleSize
 这三行就成功获取图片真正的宽和高了，存在我们的options里面；
 
 然后我们就可以happy的去计算inSampleSize了：
+
      /**
        * 根据需求的宽和高以及图片实际的宽和高计算SampleSize
        *
