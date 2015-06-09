@@ -143,6 +143,7 @@ options里面存了实际的宽和高；reqWidth和reqHeight就是我们之前�
 a、直接下载存到sd卡，然后采用本地的压缩方案。这种方式当前是在硬盘缓存开启的情况下，如果没有开启呢？
 
 b、使用BitmapFactory.decodeStream(is, null, opts);
+
          /**
               * 根据url下载图片在指定的文件
               *
